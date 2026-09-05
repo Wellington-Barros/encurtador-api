@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Estatísticas</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Estatísticas de Links</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>URL Original</th>
+        <th>Cliques</th>
+      </tr>
+    </thead>
+    <tbody id="tabela"></tbody>
+  </table>
+
+  <script>
+    async function carregar() {
+      const resposta = await fetch('/api/estatisticas');
+      const links = await resposta.json();
+      const tabela = document.getElementById('tabela');
+
+      for (const codigo in links) {
+        const link = links[codigo];
+        tabela.innerHTML += `
+          <tr>
+            <td>${codigo}</td>
+            <td>${link.url}</td>
+            <td>${link.cliques}</td>
+          </tr>
+        `;
+      }
+    }
+
+    carregar();
+  </script>
+</body>
+</html>
