@@ -60,10 +60,14 @@
   .card p {
     color: #9ca3af;
   }
+  .form-row {
+  max-width: 400px;
+  margin: 0 auto;
+}
 
   input {
     padding: 12px;
-    width: 70%;
+    width: 100%;
     background: #0a0a0f;
     border: 2px solid #24243a;
     border-radius: 8px;
@@ -80,18 +84,19 @@
     border-color: #7c6cf6;
   }
 
-  button {
-    padding: 12px 24px;
-    margin-left: 8px;
-    border: none;
-    border-radius: 8px;
-    background: #7c6cf6;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
+button {
+  padding: 12px 24px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #7c6cf6;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
 
   button:hover {
     background: #6350e0;
@@ -138,8 +143,10 @@
     <span class="badge">🔗 Encurtador de Links</span>
     <h1>Curto<span>Link</span></h1>
     <p>Encurte seus links de forma rápida, gratuita e sem cadastro.</p>
-    <input type="text" id="urlInput" placeholder="Cole sua URL aqui">
-    <button onclick="encurtar()">Encurtar</button>
+<div class="form-row">
+  <input type="text" id="urlInput" placeholder="Cole sua URL aqui">
+  <button onclick="encurtar()">Encurtar</button>
+</div>
     <div id="resultado"></div>
   </div>
 
