@@ -9,53 +9,166 @@
   <meta name="description" content="Encurte seus links de forma rápida e gratuita com o CurtoLink. Simples, prático e sem complicação.">
   <meta name="keywords" content="encurtador de link, encurtar url, link curto, encurtador gratis">
   <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      margin-top: 80px;
-    }
-    input {
-      padding: 10px;
-      width: 300px;
-    }
-    button {
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-    #resultado {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-  </style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 40px 20px;
+    background: #0a0a0f;
+    color: #e5e7eb;
+    min-height: 100vh;
+  }
+
+  .badge {
+    display: inline-block;
+    margin: 0 auto 20px auto;
+    padding: 6px 16px;
+    border: 1px solid #6d5ef8;
+    border-radius: 20px;
+    color: #a99bfb;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .card {
+    background: #13131a;
+    border: 1px solid #24243a;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    padding: 40px 30px;
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  .card h1 {
+    color: white;
+    font-size: 36px;
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  .card h1 span {
+    color: #7c6cf6;
+  }
+
+  .card p {
+    color: #9ca3af;
+  }
+
+  input {
+    padding: 12px;
+    width: 70%;
+    background: #0a0a0f;
+    border: 2px solid #24243a;
+    border-radius: 8px;
+    font-size: 16px;
+    color: white;
+    outline: none;
+  }
+
+  input::placeholder {
+    color: #6b7280;
+  }
+
+  input:focus {
+    border-color: #7c6cf6;
+  }
+
+  button {
+    padding: 12px 24px;
+    margin-left: 8px;
+    border: none;
+    border-radius: 8px;
+    background: #7c6cf6;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  button:hover {
+    background: #6350e0;
+  }
+
+  #resultado {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #a99bfb;
+    word-break: break-all;
+  }
+
+  .conteudo {
+    background: #13131a;
+    border: 1px solid #24243a;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: left;
+  }
+
+  .conteudo h2 {
+    color: #a99bfb;
+    font-size: 18px;
+  }
+
+  .conteudo p, .conteudo li {
+    color: #9ca3af;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  footer a {
+    color: #7c6cf6;
+  }
+</style>
 </head>
 <body>
- <h1>Encurtador de Links</h1>
-<p>Encurte seus links de forma rápida, gratuita e sem cadastro.</p>
-  <input type="text" id="urlInput" placeholder="Cole sua URL aqui">
-  <button onclick="encurtar()">Encurtar</button>
-  <div id="resultado"></div>
-  <section style="max-width: 600px; margin: 60px auto; text-align: left;">
-  <h2>Como funciona?</h2>
-  <p>É simples: cole o link que você quer encurtar no campo acima, clique em "Encurtar" e pronto. Você recebe um link curto que pode ser compartilhado em redes sociais, mensagens ou onde quiser.</p>
+  <div class="card">
+    <span class="badge">🔗 Encurtador de Links</span>
+    <h1>Curto<span>Link</span></h1>
+    <p>Encurte seus links de forma rápida, gratuita e sem cadastro.</p>
+    <input type="text" id="urlInput" placeholder="Cole sua URL aqui">
+    <button onclick="encurtar()">Encurtar</button>
+    <div id="resultado"></div>
+  </div>
 
-  <h2>Por que usar o CurtoLink?</h2>
-  <ul>
-    <li>Totalmente gratuito, sem necessidade de criar conta</li>
-    <li>Links curtos e fáceis de compartilhar</li>
-    <li>Rápido: em segundos seu link já está pronto</li>
-  </ul>
+  <div class="conteudo">
+    <h2>Como funciona?</h2>
+    <p>É simples: cole o link que você quer encurtar no campo acima, clique em "Encurtar" e pronto. Você recebe um link curto que pode ser compartilhado em redes sociais, mensagens ou onde quiser.</p>
 
-  <h2>Perguntas Frequentes</h2>
+    <h2>Por que usar o CurtoLink?</h2>
+    <ul>
+      <li>Totalmente gratuito, sem necessidade de criar conta</li>
+      <li>Links curtos e fáceis de compartilhar</li>
+      <li>Rápido: em segundos seu link já está pronto</li>
+    </ul>
 
-  <p><strong>Preciso me cadastrar para usar?</strong><br>
-  Não, o CurtoLink é 100% gratuito e não exige cadastro.</p>
+    <h2>Perguntas Frequentes</h2>
 
-  <p><strong>Os links encurtados expiram?</strong><br>
-  Não, os links permanecem ativos enquanto o serviço estiver no ar.</p>
+    <p><strong>Preciso me cadastrar para usar?</strong><br>
+    Não, o CurtoLink é 100% gratuito e não exige cadastro.</p>
 
-  <p><strong>Existe algum limite de links que posso criar?</strong><br>
-  No momento não há limite de uso.</p>
-</section>
+    <p><strong>Os links encurtados expiram?</strong><br>
+    Não, os links permanecem ativos enquanto o serviço estiver no ar.</p>
+
+    <p><strong>Existe algum limite de links que posso criar?</strong><br>
+    No momento não há limite de uso.</p>
+  </div>
+
+  <footer>
+    <a href="/politica-privacidade.html">Política de Privacidade</a>
+  </footer>
 
   <script>
     async function encurtar() {
@@ -73,8 +186,5 @@
         `Seu link curto: <a href="${dados.curto}" target="_blank">${dados.curto}</a>`;
     }
   </script>
-  <footer style="margin-top: 40px; font-size: 12px;">
-  <a href="/politica-privacidade.html">Política de Privacidade</a>
-</footer>
 </body>
 </html>
