@@ -1,61 +1,149 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9119031167097610" crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CurtoLink - Encurtador de Links Grátis e Rápido</title>
-  <meta name="description" content="Encurte seus links de forma rápida e gratuita com o CurtoLink. Simples, prático e sem complicação.">
-  <meta name="keywords" content="encurtador de link, encurtar url, link curto, encurtador gratis">
+  <title>Consultar Estatísticas - CurtoLink</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: sans-serif;
-      max-width: 600px;
-      margin: 50px auto;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      background: #0a0a0f;
+      color: #e5e7eb;
+      min-height: 100vh;
     }
-    table {
+
+    .card {
+      background: #13131a;
+      border: 1px solid #24243a;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 40px 30px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .card h1 {
+      color: white;
+      font-size: 26px;
+      margin-top: 0;
+    }
+
+    .card h1 span {
+      color: #7c6cf6;
+    }
+
+    .card p {
+      color: #9ca3af;
+    }
+
+    .form-row {
+      max-width: 350px;
+      margin: 0 auto;
+    }
+
+    input {
+      padding: 12px;
       width: 100%;
-      border-collapse: collapse;
+      background: #0a0a0f;
+      border: 2px solid #24243a;
+      border-radius: 8px;
+      font-size: 16px;
+      color: white;
+      outline: none;
     }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: left;
+
+    input::placeholder {
+      color: #6b7280;
+    }
+
+    input:focus {
+      border-color: #7c6cf6;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #7c6cf6;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #6350e0;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #a99bfb;
+      word-break: break-all;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    footer a {
+      color: #7c6cf6;
+      margin: 0 10px;
     }
   </style>
 </head>
 <body>
-  <h1>Estatísticas de Links</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Código</th>
-        <th>URL Original</th>
-        <th>Cliques</th>
-      </tr>
-    </thead>
-    <tbody id="tabela"></tbody>
-  </table>
+  <div class="card">
+    <h1>Consultar <span>Estatísticas</span></h1>
+    <p>Digite o código do seu link curto para ver quantos cliques ele recebeu.</p>
+
+    <div class="form-row">
+      <input type="text" id="codigoInput" placeholder="Ex: Xuurfe">
+      <button onclick="consultar()">Consultar</button>
+    </div>
+
+    <div id="resultado"></div>
+  </div>
+
+  <footer>
+    <a href="/">Início</a>
+    <a href="/sobre.html">Sobre</a>
+  </footer>
 
   <script>
-    async function carregar() {
-      const resposta = await fetch('/api/estatisticas');
-      const links = await resposta.json();
-      const tabela = document.getElementById('tabela');
+    async function consultar() {
+      const codigo = document.getElementById('codigoInput').value.trim();
+      const resultado = document.getElementById('resultado');
 
-      for (const codigo in links) {
-        const link = links[codigo];
-        tabela.innerHTML += `
-          <tr>
-            <td>${codigo}</td>
-            <td>${link.url}</td>
-            <td>${link.cliques}</td>
-          </tr>
-        `;
+      if (!codigo) {
+        resultado.innerHTML = 'Digite um código para consultar.';
+        return;
       }
-    }
 
-    carregar();
+      const resposta = await fetch(`/api/estatisticas/${codigo}`);
+
+      if (resposta.status === 404) {
+        resultado.innerHTML = 'Nenhum link encontrado com esse código.';
+        return;
+      }
+
+      const dados = await resposta.json();
+
+      resultado.innerHTML = `
+        URL original: ${dados.url}<br>
+        Cliques: ${dados.cliques}
+      `;
+    }
   </script>
 </body>
 </html>

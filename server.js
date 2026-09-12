@@ -32,10 +32,20 @@ app.post('/api/encurtar', (req, res) => {
   });
 });
 
-app.get('/api/estatisticas', (req, res) => {
-  const links = db.get('links').value();
+app.get('/api/estatisticas/:codigo', (req, res) => {
+  const { codigo } = req.params;
 
-  res.json(links);
+  const link = db.get('links').get(codigo).value();
+
+  if (!link) {
+    return res.status(404).json({ erro: 'Link não encontrado' });
+  }
+
+  res.json({
+    codigo: codigo,
+    url: link.url,
+    cliques: link.cliques
+  });
 });
 
 app.get('/:codigo', (req, res) => {
