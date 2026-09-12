@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Link para WhatsApp Grátis - CurtoLink</title>
+  <meta name="description" content="Crie gratuitamente um link direto para o WhatsApp com mensagem pré-definida. Gere e encurte seu link em segundos.">
+  <meta name="keywords" content="gerador de link whatsapp, link direto whatsapp, criar link whatsapp com mensagem">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9119031167097610" crossorigin="anonymous"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      background: #0a0a0f;
+      color: #e5e7eb;
+      min-height: 100vh;
+    }
+
+    .badge {
+      display: inline-block;
+      margin: 0 auto 20px auto;
+      padding: 6px 16px;
+      border: 1px solid #6d5ef8;
+      border-radius: 20px;
+      color: #a99bfb;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .card {
+      background: #13131a;
+      border: 1px solid #24243a;
+      max-width: 500px;
+      margin: 0 auto 30px auto;
+      padding: 40px 30px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .card h1 {
+      color: white;
+      font-size: 28px;
+      font-weight: 800;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .card h1 span {
+      color: #7c6cf6;
+    }
+
+    .card p {
+      color: #9ca3af;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 6px;
+      margin-top: 16px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      width: 100%;
+      background: #0a0a0f;
+      border: 2px solid #24243a;
+      border-radius: 8px;
+      font-size: 16px;
+      color: white;
+      outline: none;
+      font-family: inherit;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #6b7280;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #7c6cf6;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      background: #7c6cf6;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #6350e0;
+    }
+
+    .btn-secundario {
+      background: #24243a;
+    }
+
+    .btn-secundario:hover {
+      background: #2f2f4a;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #a99bfb;
+      word-break: break-all;
+    }
+
+    .conteudo {
+      background: #13131a;
+      border: 1px solid #24243a;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 30px;
+      border-radius: 16px;
+      text-align: left;
+    }
+
+    .conteudo h2 {
+      color: #a99bfb;
+      font-size: 18px;
+    }
+
+    .conteudo p, .conteudo li {
+      color: #9ca3af;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    footer a {
+      color: #7c6cf6;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <span class="badge">💬 Gerador de Link</span>
+    <h1>Link para <span>WhatsApp</span></h1>
+    <p>Crie um link direto para iniciar uma conversa no WhatsApp, já com a mensagem pronta.</p>
+
+    <label for="numeroInput">Número (com DDI e DDD)</label>
+    <input type="text" id="numeroInput" placeholder="Ex: 5511999999999">
+
+    <label for="mensagemInput">Mensagem (opcional)</label>
+    <textarea id="mensagemInput" rows="3" placeholder="Ex: Olá, vim pelo site!"></textarea>
+
+    <button onclick="gerar()">Gerar Link</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <div class="conteudo">
+    <h2>Como usar?</h2>
+    <p>Digite seu número de telefone com o código do país (55 para o Brasil) e o DDD, sem espaços ou símbolos. Se quiser, adicione uma mensagem que já aparecerá pronta para o visitante enviar.</p>
+    <p>Depois de gerar, você também pode <strong>encurtar o link</strong> com um clique, usando o CurtoLink.</p>
+  </div>
+
+  <footer>
+    <a href="/">Início</a>
+    <a href="/estatisticas.html">Estatísticas</a>
+    <a href="/sobre.html">Sobre</a>
+  </footer>
+
+  <script>
+    let linkGerado = '';
+
+    function gerar() {
+      const numero = document.getElementById('numeroInput').value.replace(/\D/g, '');
+      const mensagem = document.getElementById('mensagemInput').value;
+      const resultado = document.getElementById('resultado');
+
+      if (!numero) {
+        resultado.innerHTML = 'Digite um número válido.';
+        return;
+      }
+
+      linkGerado = `https://wa.me/${numero}`;
+
+      if (mensagem) {
+        linkGerado += `?text=${encodeURIComponent(mensagem)}`;
+      }
+
+      resultado.innerHTML = `
+        <a href="${linkGerado}" target="_blank">${linkGerado}</a>
+        <br>
+        <button class="btn-secundario" onclick="encurtar()">Encurtar este link</button>
+      `;
+    }
+
+    async function encurtar() {
+      const resposta = await fetch('/api/encurtar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: linkGerado })
+      });
+
+      const dados = await resposta.json();
+      const resultado = document.getElementById('resultado');
+
+      resultado.innerHTML += `
+        <br><br>
+        Link encurtado: <a href="${dados.curto}" target="_blank">${dados.curto}</a>
+      `;
+    }
+  </script>
+</body>
+</html>
