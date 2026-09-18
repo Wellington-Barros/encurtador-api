@@ -62,6 +62,13 @@ app.get('/:codigo', (req, res) => {
   res.send(`
     <html>
       <head>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJKH8KD9NL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YJKH8KD9NL');
+</script>
         <meta http-equiv="refresh" content="3;url=${link.url}">
         <title>Redirecionando...</title>
       </head>
