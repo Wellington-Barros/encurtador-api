@@ -48,6 +48,74 @@ app.get('/api/estatisticas/:codigo', (req, res) => {
   });
 });
 
+function verificarAdmin(req, res, next) {
+  const auth = req.headers.authorization;
+
+  if (!auth) {
+    res.set('WWW-Authenticate', 'Basic realm="Painel Admin"');
+    return res.status(401).send('Autenticação necessária');
+  }
+
+  const credenciais = Buffer.from(auth.split(' ')[1], 'base64').toString();
+  const [usuario, senha] = credenciais.split(':');
+
+  const usuarioCorreto = process.env.ADMIN_USER || 'admin';
+  const senhaCorreta = process.env.ADMIN_PASS || 'admin';
+
+  if (usuario === usuarioCorreto && senha === senhaCorreta) {
+    return next();
+  }
+
+  res.set('WWW-Authenticate', 'Basic realm="Painel Admin"');
+  return res.status(401).send('Credenciais inválidas');
+}
+
+app.get('/admin', verificarAdmin, (req, res) => {
+  const links = db.get('links').value();
+  const codigos = Object.keys(links);
+
+  const totalLinks = codigos.length;
+  const totalCliques = codigos.reduce((soma, codigo) => soma + links[codigo].cliques, 0);
+
+  const linhas = codigos.slice(-20).reverse().map(codigo => `
+    <tr>
+      <td>${codigo}</td>
+      <td>${links[codigo].url}</td>
+      <td>${links[codigo].cliques}</td>
+    </tr>
+  `).join('');
+
+  res.send(`
+    <html>
+      <head>
+        <title>Painel Admin - CurtoLink</title>
+        <style>
+          body { font-family: sans-serif; background: #0a0a0f; color: #e5e7eb; padding: 40px; }
+          h1 { color: #7c6cf6; }
+          .resumo { display: flex; gap: 20px; margin-bottom: 30px; }
+          .card { background: #13131a; border: 1px solid #24243a; padding: 20px; border-radius: 12px; }
+          .card span { display: block; font-size: 28px; font-weight: bold; color: #a99bfb; }
+          table { width: 100%; border-collapse: collapse; }
+          th, td { border: 1px solid #24243a; padding: 8px; text-align: left; font-size: 14px; }
+          th { background: #13131a; }
+        </style>
+      </head>
+      <body>
+        <h1>Painel Admin</h1>
+        <div class="resumo">
+          <div class="card">Total de links<span>${totalLinks}</span></div>
+          <div class="card">Total de cliques<span>${totalCliques}</span></div>
+        </div>
+        <h2>Links mais recentes</h2>
+        <table>
+          <tr><th>Código</th><th>URL</th><th>Cliques</th></tr>
+          ${linhas}
+        </table>
+      </body>
+    </html>
+  `);
+});
+
 app.get('/:codigo', (req, res) => {
   const { codigo } = req.params;
 
