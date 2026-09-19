@@ -144,7 +144,7 @@ app.get('/:codigo', (req, res) => {
   <h2>Você vai ser redirecionado em instantes...</h2>
   <a href="https://semnarrativa.lojavirtualnuvem.com.br" target="_blank" style="display: inline-block; margin: 24px auto; background: #13131a; border: 1px solid #24243a; border-radius: 16px; text-decoration: none; color: #e5e7eb; max-width: 320px; overflow: hidden;">
     <span style="display: block; padding: 8px 0; font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px;">Publicidade</span>
-    <img src="public/images/camiseta-sem-narrativa.jpg" alt="Camiseta Sem Narrativa" style="width: 100%; display: block;">
+    <img src="images/camiseta-sem-narrativa.jpg" alt="Camiseta Sem Narrativa" style="width: 100%; display: block;">
     <span style="display: block; padding: 16px;">
       <span style="display: block; font-size: 20px; font-weight: bold; color: #a99bfb;">Sem Narrativa</span>
       <span style="display: block; font-size: 14px; color: #9ca3af; margin-top: 4px;">Confira nossas camisetas</span>
