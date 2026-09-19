@@ -140,11 +140,15 @@ app.get('/:codigo', (req, res) => {
         <meta http-equiv="refresh" content="3;url=${link.url}">
         <title>Redirecionando...</title>
       </head>
-      <body style="font-family: sans-serif; text-align: center; padding-top: 50px;">
-        <h2>Você vai ser redirecionado em instantes...</h2>
-        <p>Aqui entra o espaço de anúncio ou link de afiliado</p>
-        <p>Se não for redirecionado automaticamente, <a href="${link.url}">clique aqui</a></p>
-      </body>
+<body style="font-family: 'Segoe UI', sans-serif; text-align: center; padding-top: 60px; background: #0a0a0f; color: #e5e7eb; margin: 0;">
+  <h2>Você vai ser redirecionado em instantes...</h2>
+  <a href="https://semnarrativa.lojavirtualnuvem.com.br" target="_blank" style="display: inline-block; margin: 24px auto; padding: 20px 30px; background: #13131a; border: 1px solid #24243a; border-radius: 16px; text-decoration: none; color: #e5e7eb; max-width: 320px;">
+    <span style="display: block; font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Publicidade</span>
+    <span style="display: block; font-size: 18px; font-weight: bold; color: #a99bfb;">Sem Narrativa</span>
+    <span style="display: block; font-size: 14px; color: #9ca3af; margin-top: 4px;">Confira nossas camisetas</span>
+  </a>
+  <p style="color: #9ca3af;">Se não for redirecionado automaticamente, <a href="${link.url}" style="color: #7c6cf6;">clique aqui</a></p>
+</body>
     </html>
   `);
 });
