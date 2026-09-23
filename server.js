@@ -150,6 +150,7 @@ app.get('/:codigo', (req, res) => {
 </script>
         <meta http-equiv="refresh" content="3;url=${urlSegura}">
         <title>Redirecionando...</title>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg">
       </head>
 <body style="font-family: 'Segoe UI', sans-serif; text-align: center; padding-top: 60px; background: #0a0a0f; color: #e5e7eb; margin: 0;">
   <h2 style="font-size: 24px;">Você vai ser redirecionado em instantes...</h2>
