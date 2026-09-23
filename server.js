@@ -4,6 +4,15 @@ const db = require('./db');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+function escapeHtml(texto) {
+  return texto
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 app.use(express.json());
 app.use(express.static('public'));
 
@@ -127,6 +136,8 @@ app.get('/:codigo', (req, res) => {
 
   db.get('links').get(codigo).update('cliques', n => n + 1).write();
 
+  const urlSegura = escapeHtml(link.url);
+
   res.send(`
     <html>
       <head>
@@ -137,7 +148,7 @@ app.get('/:codigo', (req, res) => {
   gtag('js', new Date());
   gtag('config', 'G-YJKH8KD9NL');
 </script>
-        <meta http-equiv="refresh" content="3;url=${link.url}">
+        <meta http-equiv="refresh" content="3;url=${urlSegura}">
         <title>Redirecionando...</title>
       </head>
 <body style="font-family: 'Segoe UI', sans-serif; text-align: center; padding-top: 60px; background: #0a0a0f; color: #e5e7eb; margin: 0;">
@@ -154,7 +165,7 @@ app.get('/:codigo', (req, res) => {
       <span style="display: inline-block; margin-top: 16px; padding: 12px 28px; background: #7c6cf6; color: white; border-radius: 8px; font-weight: bold; font-size: 16px;">Ver coleção</span>
     </span>
   </a>
-  <p style="color: #9ca3af;">Se não for redirecionado automaticamente, <a href="${link.url}" style="color: #7c6cf6;">clique aqui</a></p>
+  <p style="color: #9ca3af;">Se não for redirecionado automaticamente, <a href="${urlSegura}" style="color: #7c6cf6;">clique aqui</a></p>
 </body>
     </html>
   `);
