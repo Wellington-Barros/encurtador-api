@@ -141,14 +141,17 @@ app.get('/:codigo', (req, res) => {
         <title>Redirecionando...</title>
       </head>
 <body style="font-family: 'Segoe UI', sans-serif; text-align: center; padding-top: 60px; background: #0a0a0f; color: #e5e7eb; margin: 0;">
-  <h2>Você vai ser redirecionado em instantes...</h2>
-  <a href="https://semnarrativa.lojavirtualnuvem.com.br" target="_blank" style="display: inline-block; margin: 24px auto; background: #13131a; border: 1px solid #24243a; border-radius: 16px; text-decoration: none; color: #e5e7eb; max-width: 320px; overflow: hidden;">
-    <span style="display: block; padding: 8px 0; font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px;">Publicidade</span>
-    <img src="images/camiseta-sem-narrativa.jpg" alt="Camiseta Sem Narrativa" style="width: 100%; display: block;">
-    <span style="display: block; padding: 16px;">
-      <span style="display: block; font-size: 20px; font-weight: bold; color: #a99bfb;">Sem Narrativa</span>
-      <span style="display: block; font-size: 14px; color: #9ca3af; margin-top: 4px;">Confira nossas camisetas</span>
-      <span style="display: inline-block; margin-top: 12px; padding: 10px 20px; background: #7c6cf6; color: white; border-radius: 8px; font-weight: bold; font-size: 14px;">Ver coleção</span>
+  <h2 style="font-size: 24px;">Você vai ser redirecionado em instantes...</h2>
+  <a href="https://semnarrativa.lojavirtualnuvem.com.br" target="_blank" style="display: inline-block; margin: 24px auto; background: #13131a; border: 1px solid #24243a; border-radius: 16px; text-decoration: none; color: #e5e7eb; max-width: 480px; overflow: hidden;">
+    <span style="display: block; padding: 10px 0; font-size: 12px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px;">Publicidade</span>
+    <span style="display: flex;">
+      <img src="/images/camiseta-sem-narrativa.jpg" alt="Camiseta Sem Narrativa - frente" style="width: 50%; display: block;">
+      <img src="/images/camiseta-sem-narrativa-2.jpg" alt="Camiseta Sem Narrativa - verso" style="width: 50%; display: block;">
+    </span>
+    <span style="display: block; padding: 20px;">
+      <span style="display: block; font-size: 24px; font-weight: bold; color: #a99bfb;">Sem Narrativa</span>
+      <span style="display: block; font-size: 16px; color: #9ca3af; margin-top: 4px;">Confira nossas camisetas</span>
+      <span style="display: inline-block; margin-top: 16px; padding: 12px 28px; background: #7c6cf6; color: white; border-radius: 8px; font-weight: bold; font-size: 16px;">Ver coleção</span>
     </span>
   </a>
   <p style="color: #9ca3af;">Se não for redirecionado automaticamente, <a href="${link.url}" style="color: #7c6cf6;">clique aqui</a></p>
